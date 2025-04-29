@@ -1,0 +1,18 @@
+---
+- name: pacakge management
+  hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: install httpd on Redhad
+      package:
+          name: httpd
+          state: present
+          when: ansible-os-family == "Redhat"
+    - name: install docker on Debian
+      package:
+          name: httpd
+          state: present
+          when: ansible-os-family == "Debian"      
