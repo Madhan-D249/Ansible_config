@@ -1,0 +1,19 @@
+- name: pacakge management
+  hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    pakg_name: httpd
+    pakg_status: present
+    pakg_service: started
+  tasks:
+    - name: install httpd
+      yum:
+        name: '{{ pakg_name }}'
+        state: '{{ pakg_status }}'
+    - name: start the service
+      service:
+        name: '{{ pakg_name }}'
+        state: '{{ pakg_service gi}}'
