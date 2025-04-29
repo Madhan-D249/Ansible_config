@@ -1,0 +1,14 @@
+
+---
+- name: error handling
+  hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: copy files
+      copy:
+      src: ./copy.yml
+      des: /home/ansible/copy.yml
+     
