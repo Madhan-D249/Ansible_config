@@ -12,4 +12,4 @@
     - name: install httpd
       action: yum name={{pak_name}} state={{pakg_status}}
     - name: start the service
-      action: service name={{ pakg_name }} state={{ pakg_service gi}}
+      action: service name={{ pakg_name }} state={{ pakg_service }}
