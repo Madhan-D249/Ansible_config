@@ -1,11 +1,48 @@
+
 ---
-- name: pacakge management
+- name: error handling
   hosts: dev
   user: ansible
   become: yes
   connection: ssh
   gather_facts: no
   tasks:
-    - name: error handling
-      command: /bin/true
+    - name: install java
+      package:
+        name: java-17
+        state: present
+      ignore_errors: yes
+	  
+    - name: install git
+      package:
+        name: git
+        state: present
+      ignore_errors: yes
+	  
+    - name: install docker
+      package:
+        name: docker
+        state: present
+      ignore_errors: yes
+	  
+    - name: start docker
+      service:
+        name: docker
+        state: started
+        enabled: yes
+      ignore_errors: yes
+	  
+    - name: pull image
+      docker_image:
+        name: httpd
+        source: pull
+      ignore_errors: yes
+	  
+    - name: run container
+      docker_container:
+        name: httpd
+        image: httpd
+        state: started
+        ports:
+           - "8080:80"
       ignore_errors: yes
