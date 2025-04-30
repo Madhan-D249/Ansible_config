@@ -1,0 +1,13 @@
+- name: Monitor disk usage
+  hosts: all
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Check disk usage
+      command: df -h
+      register: disk_usage
+
+    - name: Alert if disk usage is high
+      debug:
+        msg: "Warning: Disk usage is above 80%"
+      when: "'80%' in disk_usage.stdout"
