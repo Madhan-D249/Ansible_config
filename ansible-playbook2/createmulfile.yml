@@ -10,8 +10,15 @@
       file:
         path: "/tmp/{{items}}"
         state: touch
+<<<<<<< HEAD
       with_items:
         - max.txt
         - tank.txt
 	- helo.txt
+=======
+	    with_items:
+	      - max.txt
+  		  - tank.txt
+	  	  - helo.txt
+>>>>>>> f2cb51d (m4)
 

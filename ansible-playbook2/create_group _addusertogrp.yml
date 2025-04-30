@@ -1,0 +1,29 @@
+---
+- name: Create and manage users
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Check if 'sudo' group exists
+      command: getent group sudo
+      register: group_check
+      ignore_errors: yes
+
+    - name: Create the 'sudo' group if it doesn't exist
+      group:
+        name: sudo
+        state: present
+      when: group_check.failed
+
+    - name: Create a user
+      user:
+        name: developer
+        state: present
+        groups: sudo
+        shell: /bin/bash
+
+    - name: Set a password for the user
+      user:
+        name: developer
+        password: "{{ 'password' | password_hash('sha512') }}"
