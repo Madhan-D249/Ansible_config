@@ -1,0 +1,17 @@
+---
+- name: creating multiple files
+  hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: create multiple files in /tmp
+	    file:
+        path: "/tmp/{{items}}"
+        state: touch
+	    with_items:
+	       - max.txt
+  		   - tank.txt
+	  	   - helo.txt
+
