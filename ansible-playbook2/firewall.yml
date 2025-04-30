@@ -1,3 +1,4 @@
+---
 - name: Configure UFW firewall
   hosts: all
   become: yes
