@@ -1,0 +1,14 @@
+- name: Update and upgrade all packages
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Update all packages to the latest version
+      package:
+        name: "*"
+        state: latest
+
+    - name: Remove unnecessary packages
+      package:
+        autoremove: yes

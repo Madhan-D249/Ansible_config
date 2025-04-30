@@ -1,0 +1,11 @@
+---
+- name: Create a file
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Create a file with content
+      copy:
+        dest: /tmp/myfile.txt
+        content: "Hello, Ansible!"
