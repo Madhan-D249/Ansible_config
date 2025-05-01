@@ -1,0 +1,15 @@
+---
+- name: Add a cron job
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Create February backup cron job
+      cron:
+        name: "Run February backup script"
+        minute: "0"
+        hour: "18"
+        day: "1"
+        month: "2"
+        job: "/path/to/backup-script.sh"
