@@ -1,0 +1,22 @@
+---
+- name: Set up SSH key authentication
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Ensure .ssh directory exists
+      file:
+        path: /home/john/.ssh
+        state: directory
+        mode: 0700
+        owner: john
+        group: john
+
+    - name: Copy the public key
+      copy:
+        src: /home/your_user/.ssh/id_rsa.pub
+        dest: /home/john/.ssh/authorized_keys
+        owner: john
+        group: john
+        mode: 0600
