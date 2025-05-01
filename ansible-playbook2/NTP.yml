@@ -1,0 +1,16 @@
+#ntp(network time protocal)...used to synchronization the server(time)
+---
+- name: Configure NTP
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install NTP
+      apt:
+        name: ntp
+        state: present
+
+    - name: Ensure NTP is running
+      service:
+        name: ntp
+        state: started
+        enabled: yes
