@@ -1,0 +1,16 @@
+- name: check for specific package
+  hosts: all
+  become: yes
+  connectin: ssh
+  gather_facts: no
+  tasks:
+    - name: check for git package
+      command: which git
+      register: git_check
+      ignore_errors: yes
+
+    - name: to install git
+      package:
+          name: git
+          state: present
+      when: git_check.rc != 0        
