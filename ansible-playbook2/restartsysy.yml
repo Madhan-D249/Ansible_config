@@ -1,0 +1,11 @@
+---
+- name: Restart the system
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Reboot the system
+      reboot:
+        msg: "System is rebooting after updates"
+        timeout: 300
