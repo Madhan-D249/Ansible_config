@@ -1,0 +1,13 @@
+---
+- name: Remove unnecessary files
+  hosts: all
+  become: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Delete log files older than 7 days
+      find:
+        paths: /var/log
+        age: 7d
+        recurse: yes
+        state: absent
