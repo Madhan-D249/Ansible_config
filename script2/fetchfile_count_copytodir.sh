@@ -8,7 +8,7 @@ DEST_DIR="/path/to/destination"
 FILE_PATTERN="*.txt"
 
 # Count the number of matching files
-FILE_COUNT=$(find "$SOURCE_DIR" -type f -name "$FILE_PATTERN" | wc -l)
+FILE_COUNT=$(find "$SOURCE_DIR" -type f -name "$FILE_PATTERN" | wc )
 
 # Copy the matching files to the destination directory
 find "$SOURCE_DIR" -type f -name "$FILE_PATTERN" -exec cp {} "$DEST_DIR" \;
