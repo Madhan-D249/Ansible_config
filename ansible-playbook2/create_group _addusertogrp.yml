@@ -5,14 +5,14 @@
   connection: ssh
   gather_facts: no
   tasks:
-    - name: Check if 'sudo' group exists
-      command: getent group sudo
+    - name: Check if 'mad' group exists
+      command: getent group mad
       register: group_check
       ignore_errors: yes
 
-    - name: Create the 'sudo' group if it doesn't exist
+    - name: Create the 'mad' group if it doesn't exist
       group:
-        name: sudo
+        name: mad
         state: present
       when: group_check.failed
 
@@ -20,7 +20,7 @@
       user:
         name: developer
         state: present
-        groups: sudo
+        groups: mad
         shell: /bin/bash
 
     - name: Set a password for the user
